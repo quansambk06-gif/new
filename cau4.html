@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Câu 4 – Đăng ký khóa học</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 30px 16px; }
+
+    .form-wrap {
+      background: white;
+      border-top: 4px solid #2f63ff;
+      padding: 28px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    h1 { color: #2f63ff; margin-bottom: 20px; font-size: 1.3rem; }
+
+    label { display: block; font-weight: bold; font-size: 0.88rem; margin-bottom: 4px; }
+    .req  { color: red; }
+
+    input, select {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      font-family: Arial, sans-serif;
+    }
+
+    input.error, select.error { border-color: red; }
+
+    .err { color: red; font-size: 0.78rem; display: none; margin-bottom: 10px; }
+    .err.show { display: block; }
+    .field { margin-bottom: 12px; }
+
+    .row { display: flex; gap: 12px; }
+    .row .field { flex: 1; }
+
+    button {
+      width: 100%;
+      padding: 11px;
+      background: #2f63ff;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+    button:hover { background: #00b253; }
+
+    #ok { display: none; background: #00e56b; color: white; padding: 10px; text-align: center; font-weight: bold; margin-top: 12px; }
+
+    /* Tablet */
+    @media (max-width: 1024px) { .form-wrap { max-width: 480px; } }
+    /* Phone */
+    @media (max-width: 414px) { .row { flex-direction: column; gap: 0; } }
+  </style>
+</head>
+<body>
+
+<div class="form-wrap">
+  <h1>Đăng Ký Khóa Học</h1>
+  <form id="f" novalidate>
+
+    <div class="field">
+      <label>Họ và tên <span class="req">*</span></label>
+      <input type="text" id="name" placeholder="Nguyễn Văn A">
+      <div class="err" id="e-name">Vui lòng nhập họ tên (ít nhất 3 ký tự).</div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="example@email.com">
+        <div class="err" id="e-email">Email không hợp lệ.</div>
+      </div>
+      <div class="field">
+        <label>Số điện thoại <span class="req">*</span></label>
+        <input type="tel" id="phone" placeholder="0912345678">
+        <div class="err" id="e-phone">SĐT phải gồm đúng 10 chữ số.</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Khóa học muốn đăng ký <span class="req">*</span></label>
+      <select id="course">
+        <option value="">— Chọn khóa học —</option>
+        <option>Tiếng Anh Giao Tiếp A1</option>
+        <option>Tiếng Anh Thương Mại B1</option>
+        <option>Luyện thi IELTS 6.5+</option>
+        <option>Tiếng Anh Thiếu Nhi</option>
+      </select>
+      <div class="err" id="e-course">Vui lòng chọn khóa học.</div>
+    </div>
+
+    <div class="field">
+      <label>Thời gian ưu tiên học <span class="req">*</span></label>
+      <select id="time">
+        <option value="">— Chọn khung giờ —</option>
+        <option>Buổi sáng (7:00 – 11:00)</option>
+        <option>Buổi chiều (13:00 – 17:00)</option>
+        <option>Buổi tối (18:00 – 21:00)</option>
+        <option>Cuối tuần</option>
+      </select>
+      <div class="err" id="e-time">Vui lòng chọn thời gian.</div>
+    </div>
+
+    <button type="submit">Gửi đăng ký</button>
+    <div id="ok"> Đăng ký thành công! Chúng tôi sẽ liên hệ sớm nhất.</div>
+  </form>
+</div>
+
+<script>
+  function err(id, show) {
+    document.getElementById(id).classList.toggle('error', show);
+    document.getElementById('e-' + id).classList.toggle('show', show);
+  }
+
+  document.getElementById('f').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var ok = true;
+
+    var name = document.getElementById('name').value.trim();
+    if (name.length < 3) { err('name', true); ok = false; } else err('name', false);
+
+    var email = document.getElementById('email').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('email', true); ok = false; } else err('email', false);
+
+    var phone = document.getElementById('phone').value.replace(/\s/g, '');
+    if (!/^\d{10}$/.test(phone)) { err('phone', true); ok = false; } else err('phone', false);
+
+    if (!document.getElementById('course').value) { err('course', true); ok = false; } else err('course', false);
+    if (!document.getElementById('time').value)   { err('time', true);   ok = false; } else err('time', false);
+
+    if (ok) {
+      document.getElementById('ok').style.display = 'block';
+      this.reset();
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Câu 3</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 24px; background: #f5f5f5; }
+    h1 { color: #2f63ff; margin-bottom: 20px; }
+
+    .course-card {
+      background: white;
+      border-left: 5px solid #2fcbff;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .course-card h2 { color: #2f63ff; margin-bottom: 8px; font-size: 1rem; }
+    .course-card p  { margin-bottom: 6px; font-size: 0.9rem; color: #333; }
+  </style>
+</head>
+<body>
+
+<h1>Danh sách Khóa Học</h1>
+<div id="course-list"></div>
+
+<script>
+  var courses = [
+    { tenKhoaHoc: "Tiếng Anh Giao Tiếp A1", mo_ta: "Xây dựng phản xạ tiếng Anh cơ bản qua các tình huống thực tế.", hoc_phi: "2.500.000 đ", khai_giang: "01/06/2025", thoi_luong: "2 tháng" },
+    { tenKhoaHoc: "Tiếng Anh Thương Mại B1", mo_ta: "Viết email, thuyết trình và đàm phán kinh doanh bằng tiếng Anh.", hoc_phi: "3.800.000 đ", khai_giang: "10/06/2025", thoi_luong: "3 tháng" },
+    { tenKhoaHoc: "Luyện thi IELTS 6.5+", mo_ta: "Chiến lược làm bài 4 kỹ năng, đề thi thử chuẩn Cambridge.", hoc_phi: "5.200.000 đ", khai_giang: "15/06/2025", thoi_luong: "4 tháng" },
+    { tenKhoaHoc: "Tiếng Anh Thiếu Nhi (6–12 tuổi)", mo_ta: "Học qua trò chơi và bài hát, giúp trẻ yêu tiếng Anh từ sớm.", hoc_phi: "1.900.000 đ", khai_giang: "05/06/2025", thoi_luong: "3 tháng" }
+  ];
+
+  var container = document.getElementById('course-list');
+  var i = 0;
+
+  while (i < courses.length) {
+    var c = courses[i];
+    var div = document.createElement('div');
+    div.className = 'course-card';
+    div.innerHTML =
+      '<h2>' + c.tenKhoaHoc + '</h2>' +
+      '<p>' + c.mo_ta + '</p>' +
+      '<p> Khai giảng: ' + c.khai_giang + ' &nbsp;|&nbsp;  ' + c.thoi_luong + ' &nbsp;|&nbsp;  ' + c.hoc_phi + '</p>';
+    container.appendChild(div);
+    i++;
+  }
+</script>
+
+</body>
+</html>

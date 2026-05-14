@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Learning</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Times New Roman', Times, serif, sans-serif; background: #f5f5f5; }
+
+    /* HEADER */
+    header {
+      background: #2f63ff;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .site-name { font-size: 1.5rem; font-weight: bold; }
+    .site-name span { color: #ffe700; }
+    .slogan { font-size: 0.8rem; color: #c8d8ff; }
+
+    /* NAV */
+    nav {
+      background: #00b253;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 24px;
+    }
+    nav div a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 16px;
+    }
+    nav div a:hover { background: #00e56b; color: black; }
+
+    /* SECTIONS */
+    .section { padding: 28px 24px; }
+    h2.sec-title { color: #2f63ff; margin-bottom: 16px; }
+
+    /* ADVERT */
+    .advert {
+      width: 100%;
+      height: 200px;
+      background-color: #ffe700;
+      border: 2px solid #00b253;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .advert:hover {
+      background-color: #2fcbff;
+      border-color: #2f63ff;
+      font-style: italic;
+    }
+    .advert h3 { margin-bottom: 8px; }
+
+    /* COURSES */
+    .courses-bg { background: white; padding: 28px 24px; }
+
+    #course-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .item {
+      width: 200px;
+      height: 120px;
+      background-color: #2f63ff;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+    .item .fee { color: #ffe700; font-size: 0.82rem; }
+
+    /* FORM */
+    .form-section { padding: 28px 24px; display: flex; justify-content: center; }
+    .form-card {
+      background: white;
+      border-top: 4px solid #2f63ff;
+      padding: 28px;
+      width: 100%;
+      max-width: 560px;
+    }
+    .form-card h2 { color: #2f63ff; margin-bottom: 18px; }
+
+    label { display: block; font-weight: bold; font-size: 0.87rem; margin-bottom: 4px; }
+    .req  { color: red; }
+    input, select {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      font-family: Arial, sans-serif;
+    }
+    input.error, select.error { border-color: red; }
+    .err { color: red; font-size: 0.78rem; display: none; margin-bottom: 10px; }
+    .err.show { display: block; }
+    .field { margin-bottom: 12px; }
+    .row { display: flex; gap: 12px; }
+    .row .field { flex: 1; }
+
+    button {
+      width: 100%;
+      padding: 11px;
+      background: #2f63ff;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    button:hover { background: #00b253; }
+    #ok { display: none; background: #00e56b; color: white; padding: 10px; text-align: center; font-weight: bold; margin-top: 10px; }
+
+    /* FOOTER */
+    footer {
+      background: #2f63ff;
+      color: #c8d8ff;
+      text-align: center;
+      padding: 16px;
+      font-size: 0.85rem;
+    }
+    footer strong { color: #ffe700; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .item { width: 180px; }
+    }
+    @media (max-width: 414px) {
+      nav div a { padding: 9px 11px; font-size: 0.82rem; }
+      .item { width: 100%; max-width: 280px; height: auto; padding: 14px; }
+      #course-list { flex-direction: column; align-items: center; }
+      .row { flex-direction: column; gap: 0; }
+      .advert { height: auto; min-height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER + SLOGAN -->
+<header>
+  <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="6" fill="#ffe700"/>
+    <circle cx="20" cy="20" r="18" fill="#2fcbff"/>
+    <text x="20" y="27" text-anchor="middle" font-size="20" font-weight="bold" font-family="Arial" fill="#ffe700">EL</text>
+  </svg>
+  <div>
+    <div class="site-name">English <span>Learning</span></div>
+    <div class="slogan">Học, học nữa, học mãi!!!</div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div><a href="#">Trang chủ</a></div>
+  <div><a href="#courses">Khóa học</a></div>
+  <div><a href="#">Lộ trình</a></div>
+  <div><a href="#">Giáo viên</a></div>
+  <div><a href="#form">Đăng ký</a></div>
+</nav>
+
+<!-- ADVERT -->
+<div class="section">
+  <div class="advert">
+    <h3> Ưu đãi tháng 6 — Giảm 20% tất cả khóa học!</h3>
+    <p>Đăng ký trong tháng 6, nhận ngay tài liệu IELTS trị giá 500.000 đ miễn phí.</p>
+  </div>
+</div>
+
+<!-- COURSES -->
+<div class="courses-bg" id="courses">
+  <div class="section" style="padding-top:0">
+    <h2 class="sec-title">Các Khóa Học</h2>
+    <div id="course-list"></div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-section" id="form">
+  <div class="form-card">
+    <h2>Đăng Ký Khóa Học</h2>
+    <form id="f" novalidate>
+
+      <div class="field">
+        <label>Họ và tên <span class="req">*</span></label>
+        <input type="text" id="name" placeholder="Nguyễn Văn A">
+        <div class="err" id="e-name">Vui lòng nhập họ tên (ít nhất 3 ký tự).</div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="example@email.com">
+          <div class="err" id="e-email">Email không hợp lệ.</div>
+        </div>
+        <div class="field">
+          <label>Số điện thoại <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="0912345678">
+          <div class="err" id="e-phone">SĐT phải gồm đúng 10 chữ số.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Khóa học muốn đăng ký <span class="req">*</span></label>
+        <select id="course">
+          <option value="">— Chọn khóa học —</option>
+          <option>Tiếng Anh Giao Tiếp A1</option>
+          <option>Tiếng Anh Thương Mại B1</option>
+          <option>Luyện thi IELTS 6.5+</option>
+          <option>Tiếng Anh Thiếu Nhi</option>
+        </select>
+        <div class="err" id="e-course">Vui lòng chọn khóa học.</div>
+      </div>
+
+      <div class="field">
+        <label>Thời gian ưu tiên <span class="req">*</span></label>
+        <select id="time">
+          <option value="">— Chọn khung giờ —</option>
+          <option>Buổi sáng (7:00 – 11:00)</option>
+          <option>Buổi chiều (13:00 – 17:00)</option>
+          <option>Buổi tối (18:00 – 21:00)</option>
+          <option>Cuối tuần</option>
+        </select>
+        <div class="err" id="e-time">Vui lòng chọn thời gian.</div>
+      </div>
+
+      <button type="submit">Gửi đăng ký</button>
+      <div id="ok"> Đăng ký thành công! Chúng tôi sẽ liên hệ sớm nhất.</div>
+    </form>
+  </div>
+</div>
+
+<footer>© 2025 <strong>English Learning</strong></footer>
+
+<script>
+  /* JSON + while loop (câu 3) */
+  var courses = [
+    { ten: "Tiếng Anh Giao Tiếp A1", phi: "2.500.000 đ" },
+    { ten: "Tiếng Anh Thương Mại B1", phi: "3.800.000 đ" },
+    { ten: "Luyện thi IELTS 6.5+",   phi: "5.200.000 đ" },
+    { ten: "Tiếng Anh Thiếu Nhi",     phi: "1.900.000 đ" }
+  ];
+  var list = document.getElementById('course-list');
+  var i = 0;
+  while (i < courses.length) {
+    var div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = courses[i].ten + '<span class="fee"> ' + courses[i].phi + '</span>';
+    list.appendChild(div);
+    i++;
+  }
+
+  /* Form validation (câu 4) */
+  function err(id, show) {
+    document.getElementById(id).classList.toggle('error', show);
+    document.getElementById('e-' + id).classList.toggle('show', show);
+  }
+
+  document.getElementById('f').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var ok = true;
+
+    var name = document.getElementById('name').value.trim();
+    if (name.length < 3) { err('name', true); ok = false; } else err('name', false);
+
+    var email = document.getElementById('email').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('email', true); ok = false; } else err('email', false);
+
+    var phone = document.getElementById('phone').value.replace(/\s/g,'');
+    if (!/^\d{10}$/.test(phone)) { err('phone', true); ok = false; } else err('phone', false);
+
+    if (!document.getElementById('course').value) { err('course', true); ok = false; } else err('course', false);
+    if (!document.getElementById('time').value)   { err('time', true);   ok = false; } else err('time', false);
+
+    if (ok) { document.getElementById('ok').style.display = 'block'; this.reset(); }
+  });
+</script>
+
+</body>
+</html>
