@@ -222,76 +222,28 @@ public class Main {
 }
 // cau 5
 import java.util.*;
-
-// 1. Tạo lớp Luồng kế thừa từ lớp Thread để tính tổng bình phương của một đoạn
-class SquareThread extends Thread {
-    private int[] arr;
-    private int start, end;
-    private long sum = 0; // Dùng kiểu long vì bình phương số lớn rất dễ bị tràn số int
-
-    // Constructor để truyền mảng và đoạn cần tính vào cho luồng này phụ trách
-    SquareThread(int[] arr, int start, int end) {
-        this.arr = arr;
-        this.start = start;
-        this.end = end;
-    }
-
-    // Hàm run() chứa công việc mà luồng này sẽ tự động chạy khi kích hoạt
-    @Override
-    public void run() {
-        for (int i = start; i < end; i++) {
-            sum += (long) arr[i] * arr[i]; // Ép kiểu sang long để nhân không bị lỗi
-        }
-    }
-
-    // Hàm lấy ra kết quả sau khi luồng tính xong
-    public long getSum() {
-        return sum;
-    }
-}
+import java.util.stream.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        // Đọc dữ liệu đầu vào
-        int N = sc.nextInt();
-        int[] arr = new int[N];
-        for (int i = 0; i < N; i++) {
-            arr[i] = sc.nextInt();
-        }
-        int K = sc.nextInt();
-        
-        // Tạo một mảng quản lý K luồng
-        SquareThread[] threads = new SquareThread[K];
-        
-        // Tính toán kích thước mỗi đoạn mà 1 luồng cần xử lý
-        int chunkSize = N / K;
-        
-        // Chia việc cho từng luồng
-        for (int i = 0; i < K; i++) {
-            int start = i * chunkSize;
-            // Luồng cuối cùng ôm nốt phần dư nếu N không chia hết cho K
-            int end = (i == K - 1) ? N : (start + chunkSize);
-            
-            threads[i] = new SquareThread(arr, start, end);
-            threads[i].start(); // Lệnh start() sẽ kích hoạt hàm run() chạy ngầm song song
+        int n = sc.nextInt();
+        List<Double> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(sc.nextDouble());
         }
         
-        long totalSum = 0;
+        // 1. Kiểm tra xem có ít nhất một điểm >= 9 hay không
+        boolean anyGiol = list.stream().anyMatch(s -> s >= 9);
+        System.out.println("ANY " + anyGiol);
         
-        // Chờ tất cả các luồng tính xong rồi gom kết quả lại
-        for (int i = 0; i < K; i++) {
-            try {
-                threads[i].join(); // Lệnh join() bắt hàm main phải đợi luồng này làm xong mới được đi tiếp
-                totalSum += threads[i].getSum(); // Cộng dồn kết quả
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        // 2. Kiểm tra xem có phải mọi điểm đều >= 5 hay không
+        boolean allDat = list.stream().allMatch(s -> s >= 5);
+        System.out.println("ALL " + allDat);
         
-        // In kết quả cuối cùng
-        System.out.println(totalSum);
+        // 3. Kiểm tra xem không có điểm nào ngoài khoảng [0, 10] hay không
+        boolean noneHopLe = list.stream().noneMatch(s -> s < 0 || s > 10);
+        System.out.println("NONE " + noneHopLe);
         
         sc.close();
     }
